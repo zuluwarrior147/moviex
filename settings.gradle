@@ -1,1 +1,5 @@
 rootProject.name = 'moviex'
+include 'application'
+include 'common'
+include 'configuration'
+

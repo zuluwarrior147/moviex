@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group 'com.rental'
+version '0.0.1-SNAPSHOT'
+
+dependencies {
+    implementation project(':common')
+    implementation 'javax.transaction:javax.transaction-api'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.0.1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:2.23.0'
+}
+
+test {
+    useJUnitPlatform()
+}

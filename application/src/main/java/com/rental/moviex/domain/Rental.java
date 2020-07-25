@@ -1,8 +1,8 @@
 package com.rental.moviex.domain;
 
+import com.rental.moviex.application.exception.RentalNotFinishedException;
 import com.rental.moviex.application.service.calculation.RentalCalculationStrategy;
 import com.rental.moviex.application.service.calculation.RentalCalculationStrategyFactory;
-import com.rental.moviex.application.exception.RentalNotFinishedException;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -16,7 +16,7 @@ public class Rental {
     private Long id;
     private User user;
     private Movie movie;
-    private Integer initialRentalDays;
+    private int initialRentalDays;
     private LocalDate startDate;
     private LocalDate endDate;
 

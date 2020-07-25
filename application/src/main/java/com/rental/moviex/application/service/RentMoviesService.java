@@ -28,7 +28,7 @@ public class RentMoviesService implements RentMoviesUseCase {
                 .entrySet().stream()
                 .map(e -> createRental(e.getKey(), e.getValue()))
                 .map(rental -> rental.setUser(user))
-                .map(rentalPort::addRental)
+                .map(rentalPort::createRental)
                 .mapToLong(Rental::calculateBasicRent)
                 .sum();
         return new RentedMoviesResponse(basicRent);

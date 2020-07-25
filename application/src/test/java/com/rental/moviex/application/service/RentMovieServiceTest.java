@@ -24,7 +24,7 @@ class RentMovieServiceTest extends BasicRentalTest {
     void setUp() {
         super.setUp();
         testedInstance = new RentMoviesService(moviePort, userPort, rentalPort, clock);
-        when(rentalPort.addRental(any(Rental.class)))
+        when(rentalPort.createRental(any(Rental.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0, Rental.class));
     }
 
@@ -36,7 +36,7 @@ class RentMovieServiceTest extends BasicRentalTest {
 
         testedInstance.rentMovie(new RentMoviesCommand(USER_ID, Map.of(MOVIE_ID, SINGLE_DAY)));
 
-        verify(rentalPort).addRental(new Rental().setUser(user).setMovie(movie)
+        verify(rentalPort).createRental(new Rental().setUser(user).setMovie(movie)
                 .setInitialRentalDays(SINGLE_DAY).setStartDate(LocalDate.now(clock)));
     }
 

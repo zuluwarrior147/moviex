@@ -2,4 +2,5 @@ rootProject.name = 'moviex'
 include 'application'
 include 'common'
 include 'configuration'
+include 'adapters:persistence'
 

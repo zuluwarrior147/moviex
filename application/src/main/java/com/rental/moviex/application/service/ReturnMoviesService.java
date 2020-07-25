@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-@UseCase
+//@UseCase
 public class ReturnMoviesService implements ReturnMoviesUseCase {
     private final RentalPort rentalPort;
     private final UserPort userPort;

@@ -3,4 +3,5 @@ include 'application'
 include 'common'
 include 'configuration'
 include 'adapters:persistence'
+include 'adapters:web'
 

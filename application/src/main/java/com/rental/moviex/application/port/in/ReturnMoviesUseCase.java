@@ -1,21 +1,28 @@
 package com.rental.moviex.application.port.in;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
 public interface ReturnMoviesUseCase {
     ReturnedMoviesResponse returnMovies(ReturnMoviesCommand command);
 
-    @Value
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
     class ReturnedMoviesResponse {
-        private final long surcharges;
-        private final int bonusPoints;
+        private long surcharges;
+        private int bonusPoints;
     }
 
-    @Value
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
     class ReturnMoviesCommand {
-        private final Long userId;
-        private final Set<Long> moviesIds;
+        private Long userId;
+        private Set<Long> moviesIds;
     }
 }

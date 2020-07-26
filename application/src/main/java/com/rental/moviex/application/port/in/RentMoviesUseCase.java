@@ -1,9 +1,11 @@
 package com.rental.moviex.application.port.in;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
 import java.util.Map;
-import java.util.Set;
 
 public interface RentMoviesUseCase {
 
@@ -15,8 +17,10 @@ public interface RentMoviesUseCase {
         private final Map<Long, Integer> moviesForDays;
     }
 
-    @Value
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
     class RentedMoviesResponse {
-        private final Long calculatedCost;
+        private Long calculatedCost;
     }
 }

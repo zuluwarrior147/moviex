@@ -34,7 +34,7 @@ class RentMovieServiceTest extends BasicRentalTest {
                 .setTitle("The Departed").setType(MovieType.OLD);
         when(moviePort.loadMovieById(MOVIE_ID)).thenReturn(movie);
 
-        testedInstance.rentMovie(new RentMoviesCommand(USER_ID, Map.of(MOVIE_ID, SINGLE_DAY)));
+        testedInstance.rentMovies(new RentMoviesCommand(USER_ID, Map.of(MOVIE_ID, SINGLE_DAY)));
 
         verify(rentalPort).createRental(new Rental().setUser(user).setMovie(movie)
                 .setInitialRentalDays(SINGLE_DAY).setStartDate(LocalDate.now(clock)));
@@ -46,7 +46,7 @@ class RentMovieServiceTest extends BasicRentalTest {
         createMovie(OLD_MOVIE_ID, "Taxi Driver", MovieType.OLD);
 
         RentedMoviesResponse actualResult = testedInstance
-                .rentMovie(new RentMoviesCommand(USER_ID, Map.of(MOVIE_ID, SINGLE_DAY, OLD_MOVIE_ID, SINGLE_DAY)));
+                .rentMovies(new RentMoviesCommand(USER_ID, Map.of(MOVIE_ID, SINGLE_DAY, OLD_MOVIE_ID, SINGLE_DAY)));
 
         assertEquals(60L, actualResult.getCalculatedCost());
     }
@@ -58,7 +58,7 @@ class RentMovieServiceTest extends BasicRentalTest {
         createMovie(NEW_MOVIE_ID, "The Irishman", MovieType.RELEASE);
 
         RentedMoviesResponse actualResult = testedInstance
-                .rentMovie(new RentMoviesCommand(USER_ID,
+                .rentMovies(new RentMoviesCommand(USER_ID,
                         Map.of(MOVIE_ID, SINGLE_DAY, OLD_MOVIE_ID, SINGLE_DAY, NEW_MOVIE_ID, SINGLE_DAY)));
 
         assertEquals(100L, actualResult.getCalculatedCost());
@@ -71,7 +71,7 @@ class RentMovieServiceTest extends BasicRentalTest {
         createMovie(NEW_MOVIE_ID, "The Irishman", MovieType.RELEASE);
 
         RentedMoviesResponse actualResult = testedInstance
-                .rentMovie(new RentMoviesCommand(USER_ID,
+                .rentMovies(new RentMoviesCommand(USER_ID,
                         Map.of(MOVIE_ID, 4, OLD_MOVIE_ID, 7, NEW_MOVIE_ID, 2)));
 
         assertEquals(230L, actualResult.getCalculatedCost());

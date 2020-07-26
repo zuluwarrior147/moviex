@@ -3,6 +3,7 @@ package com.rental.moviex.adapter;
 import com.rental.moviex.domain.Movie;
 import com.rental.moviex.domain.MovieType;
 import com.rental.moviex.entity.MovieEntity;
+import com.rental.moviex.exception.MovieNotFoundException;
 import com.rental.moviex.mapper.MovieMapper;
 import com.rental.moviex.repository.MovieRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +13,6 @@ import org.mapstruct.factory.Mappers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -56,6 +56,6 @@ class MoviePersistenceAdapterTest {
     void shouldThrowExceptionWhenNoMovieFound() {
         when(movieRepository.findById(MOVIE_ID)).thenReturn(Optional.empty());
 
-        assertThrows(EntityNotFoundException.class, () -> testedInstance.loadMovieById(MOVIE_ID));
+        assertThrows(MovieNotFoundException.class, () -> testedInstance.loadMovieById(MOVIE_ID));
     }
 }

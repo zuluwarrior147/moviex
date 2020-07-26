@@ -4,6 +4,7 @@ import com.rental.moviex.domain.User;
 import com.rental.moviex.domain.UserDetails;
 import com.rental.moviex.entity.UserDetailsEntity;
 import com.rental.moviex.entity.UserEntity;
+import com.rental.moviex.exception.UserNotFoundException;
 import com.rental.moviex.mapper.UserMapper;
 import com.rental.moviex.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +14,6 @@ import org.mapstruct.factory.Mappers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -54,6 +54,6 @@ class UserPersistenceAdapterTest {
     void shouldThrowExceptionIfNoUserFound() {
         when(repository.findById(USER_ID)).thenReturn(Optional.empty());
 
-        assertThrows(EntityNotFoundException.class, () -> testedInstance.loadUserById(USER_ID));
+        assertThrows(UserNotFoundException.class, () -> testedInstance.loadUserById(USER_ID));
     }
 }

@@ -22,7 +22,7 @@ public class RentMoviesService implements RentMoviesUseCase {
     private final RentalPort rentalPort;
     private final Clock clock;
 
-    public RentedMoviesResponse rentMovie(RentMoviesCommand command) {
+    public RentedMoviesResponse rentMovies(RentMoviesCommand command) {
         User user = userPort.loadUserById(command.getUserId());
         Long basicRent = command.getMoviesForDays()
                 .entrySet().stream()

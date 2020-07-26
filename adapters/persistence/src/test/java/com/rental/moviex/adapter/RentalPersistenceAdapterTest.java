@@ -8,6 +8,7 @@ import com.rental.moviex.entity.MovieEntity;
 import com.rental.moviex.entity.RentalEntity;
 import com.rental.moviex.entity.UserDetailsEntity;
 import com.rental.moviex.entity.UserEntity;
+import com.rental.moviex.exception.RentalNotFoundException;
 import com.rental.moviex.mapper.RentalMapper;
 import com.rental.moviex.repository.RentalRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +18,6 @@ import org.mapstruct.factory.Mappers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -67,7 +67,7 @@ class RentalPersistenceAdapterTest {
     void shouldThrowExceptionWhenNoRentalFound() {
         when(rentalRepository.findByUserIdAndMovieId(USER_ID, MOVIE_ID)).thenReturn(Optional.empty());
 
-        assertThrows(EntityNotFoundException.class, () -> testedInstance.loadRentalByUserIdAndMovieId(USER_ID, MOVIE_ID));
+        assertThrows(RentalNotFoundException.class, () -> testedInstance.loadRentalByUserIdAndMovieId(USER_ID, MOVIE_ID));
     }
 
     @Test

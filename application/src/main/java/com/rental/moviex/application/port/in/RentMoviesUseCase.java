@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface RentMoviesUseCase {
 
-    RentedMoviesResponse rentMovie(RentMoviesCommand command);
+    RentedMoviesResponse rentMovies(RentMoviesCommand command);
 
     @Value
     class RentMoviesCommand {

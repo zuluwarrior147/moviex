@@ -25,7 +25,7 @@ public class MoviesController {
 
     @PostMapping("/rent")
     public ResponseEntity<RentedMoviesResponse> rentMovies(@RequestBody RentMoviesRequest request) {
-        RentedMoviesResponse rentedMoviesResponse = rentMoviesUseCase.rentMovie(
+        RentedMoviesResponse rentedMoviesResponse = rentMoviesUseCase.rentMovies(
                 new RentMoviesCommand(request.getUserId(), request.zipMoviesForDays()));
         return ResponseEntity.ok(rentedMoviesResponse);
     }

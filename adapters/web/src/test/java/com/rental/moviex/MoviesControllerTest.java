@@ -8,6 +8,7 @@ import com.rental.moviex.application.port.in.ReturnMoviesUseCase;
 import com.rental.moviex.application.port.in.ReturnMoviesUseCase.ReturnMoviesCommand;
 import com.rental.moviex.application.port.in.ReturnMoviesUseCase.ReturnedMoviesResponse;
 import com.rental.moviex.controller.MoviesController;
+import com.rental.moviex.exception.RentalNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -21,6 +22,7 @@ import java.util.Set;
 import static com.rental.moviex.application.port.in.RentMoviesUseCase.RentMoviesCommand;
 import static com.rental.moviex.application.port.in.RentMoviesUseCase.RentedMoviesResponse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -29,6 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class MoviesControllerTest {
     private static final long CALCULATED_COST = 60L;
     private static final long USER_ID = 13L;
+    private static final long MOVIE_ID = 22;
     @Autowired
     private MockMvc mockMvc;
     @MockBean
@@ -38,7 +41,7 @@ public class MoviesControllerTest {
 
     @Test
     void somethingWillBreak() throws Exception {
-        when(rentMoviesUseCase.rentMovie(new RentMoviesCommand(USER_ID, new HashMap<>() {{
+        when(rentMoviesUseCase.rentMovies(new RentMoviesCommand(USER_ID, new HashMap<>() {{
             put(1L, 2);
             put(2L, 3);
         }})))
@@ -89,6 +92,33 @@ public class MoviesControllerTest {
 
         assertEquals(5, returnedMoviesResponse.getBonusPoints());
         assertEquals(90L, returnedMoviesResponse.getSurcharges());
+    }
+
+    @Test
+    void shouldReturnNotFoundStatusForNotExistingEntities() throws Exception {
+        RentalNotFoundException thrownException = new RentalNotFoundException(USER_ID, MOVIE_ID);
+        when(rentMoviesUseCase.rentMovies(any(RentMoviesCommand.class)))
+                .thenThrow(thrownException);
+
+        String response = mockMvc.perform(post("/movies/rent")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "   \"userId\":13,\n" +
+                        "   \"moviesForDays\":[\n" +
+                        "      {\n" +
+                        "         \"movieId\":1,\n" +
+                        "         \"days\":2\n" +
+                        "      },\n" +
+                        "      {\n" +
+                        "         \"movieId\":2,\n" +
+                        "         \"days\":3\n" +
+                        "      }\n" +
+                        "   ]\n" +
+                        "}"))
+                .andExpect(status().isNotFound())
+                .andReturn().getResponse().getContentAsString();
+
+        assertEquals(thrownException.getMessage(), response);
     }
 
     private static <T> T convertResponse(String response, TypeReference<T> castType) {

@@ -1,6 +1,6 @@
 package com.rental.moviex.domain;
 
-import com.rental.moviex.application.exception.RentalNotFinishedException;
+import com.rental.moviex.exception.RentalNotFinishedException;
 import com.rental.moviex.application.service.calculation.RentalCalculationStrategy;
 import com.rental.moviex.application.service.calculation.RentalCalculationStrategyFactory;
 import lombok.Data;
@@ -26,7 +26,7 @@ public class Rental {
         RentalCalculationStrategy rentalCalculationStrategy = rentalCalculationStrategyFactory.getRentalStrategy(movie.getType());
         return ofNullable(endDate)
                 .map(d -> rentalCalculationStrategy.calculateSurcharges(this))
-                .orElseThrow(() -> new RentalNotFinishedException(this));
+                .orElseThrow(() -> new RentalNotFinishedException(this.getId()));
     }
 
     public Long calculateBasicRent() {
@@ -38,6 +38,6 @@ public class Rental {
         RentalCalculationStrategy rentalCalculationStrategy = rentalCalculationStrategyFactory.getRentalStrategy(movie.getType());
         return ofNullable(endDate)
                 .map(d -> rentalCalculationStrategy.getBonusPoints())
-                .orElseThrow(() -> new RentalNotFinishedException(this));
+                .orElseThrow(() -> new RentalNotFinishedException(this.getId()));
     }
 }

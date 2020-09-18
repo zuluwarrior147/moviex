@@ -1,8 +1,8 @@
 package com.rental.moviex.application.service;
 
-import com.rental.moviex.application.port.out.MoviePort;
-import com.rental.moviex.application.port.out.RentalPort;
-import com.rental.moviex.application.port.out.UserPort;
+import com.rental.moviex.application.port.MoviePort;
+import com.rental.moviex.application.port.RentalPort;
+import com.rental.moviex.application.port.UserPort;
 import com.rental.moviex.domain.Movie;
 import com.rental.moviex.domain.MovieType;
 import com.rental.moviex.domain.User;

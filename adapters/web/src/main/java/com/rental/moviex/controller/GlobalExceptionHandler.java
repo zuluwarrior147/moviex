@@ -14,15 +14,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({UserNotFoundException.class, MovieNotFoundException.class, RentalNotFoundException.class})
     ResponseEntity<String> userNotFoundException(RuntimeException e) {
-        return error(e, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(RentalNotFinishedException.class)
     ResponseEntity<String> rentalNotFinishedException(RentalNotFinishedException e) {
-        return error(e, HttpStatus.CONFLICT);
-    }
-
-    private ResponseEntity<String> error(Exception e, HttpStatus httpStatus) {
-        return new ResponseEntity<>(e.getMessage(), httpStatus);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
     }
 }

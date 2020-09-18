@@ -1,11 +1,11 @@
 package com.rental.moviex.adapter;
 
 import com.rental.moviex.PersistenceAdapter;
-import com.rental.moviex.application.port.out.RentalPort;
+import com.rental.moviex.application.port.RentalPort;
 import com.rental.moviex.domain.Rental;
 import com.rental.moviex.entity.RentalEntity;
 import com.rental.moviex.exception.RentalNotFoundException;
-import com.rental.moviex.exception.UserNotFoundException;
+
 import com.rental.moviex.mapper.RentalMapper;
 import com.rental.moviex.repository.RentalRepository;
 import lombok.RequiredArgsConstructor;

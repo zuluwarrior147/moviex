@@ -1,7 +1,7 @@
 package com.rental.moviex.adapter;
 
 import com.rental.moviex.PersistenceAdapter;
-import com.rental.moviex.application.port.out.UserPort;
+import com.rental.moviex.application.port.UserPort;
 import com.rental.moviex.domain.User;
 import com.rental.moviex.exception.UserNotFoundException;
 import com.rental.moviex.mapper.UserMapper;

@@ -1,9 +1,9 @@
 package com.rental.moviex.application.service;
 
 import com.rental.moviex.UseCase;
-import com.rental.moviex.application.port.in.ReturnMoviesUseCase;
-import com.rental.moviex.application.port.out.RentalPort;
-import com.rental.moviex.application.port.out.UserPort;
+import com.rental.moviex.application.usecase.ReturnMoviesUseCase;
+import com.rental.moviex.application.port.RentalPort;
+import com.rental.moviex.application.port.UserPort;
 import com.rental.moviex.domain.Rental;
 import com.rental.moviex.domain.User;
 import lombok.RequiredArgsConstructor;

@@ -1,12 +1,12 @@
 package com.rental.moviex.controller;
 
 import com.rental.moviex.WebAdapter;
-import com.rental.moviex.application.port.in.RentMoviesUseCase;
-import com.rental.moviex.application.port.in.RentMoviesUseCase.RentMoviesCommand;
-import com.rental.moviex.application.port.in.RentMoviesUseCase.RentedMoviesResponse;
-import com.rental.moviex.application.port.in.ReturnMoviesUseCase;
-import com.rental.moviex.application.port.in.ReturnMoviesUseCase.ReturnMoviesCommand;
-import com.rental.moviex.application.port.in.ReturnMoviesUseCase.ReturnedMoviesResponse;
+import com.rental.moviex.application.usecase.RentMoviesUseCase;
+import com.rental.moviex.application.usecase.RentMoviesUseCase.RentMoviesCommand;
+import com.rental.moviex.application.usecase.RentMoviesUseCase.RentedMoviesResponse;
+import com.rental.moviex.application.usecase.ReturnMoviesUseCase;
+import com.rental.moviex.application.usecase.ReturnMoviesUseCase.ReturnMoviesCommand;
+import com.rental.moviex.application.usecase.ReturnMoviesUseCase.ReturnedMoviesResponse;
 import com.rental.moviex.request.RentMoviesRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

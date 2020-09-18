@@ -1,15 +1,16 @@
 package com.rental.moviex.application.service;
 
 import com.rental.moviex.UseCase;
-import com.rental.moviex.application.port.in.RentMoviesUseCase;
-import com.rental.moviex.application.port.out.MoviePort;
-import com.rental.moviex.application.port.out.RentalPort;
-import com.rental.moviex.application.port.out.UserPort;
+import com.rental.moviex.application.usecase.RentMoviesUseCase;
+import com.rental.moviex.application.port.MoviePort;
+import com.rental.moviex.application.port.RentalPort;
+import com.rental.moviex.application.port.UserPort;
 import com.rental.moviex.domain.Movie;
 import com.rental.moviex.domain.Rental;
 import com.rental.moviex.domain.User;
 import lombok.RequiredArgsConstructor;
 
+import javax.transaction.Transactional;
 import java.time.Clock;
 import java.time.LocalDate;
 
@@ -22,6 +23,7 @@ public class RentMoviesService implements RentMoviesUseCase {
     private final RentalPort rentalPort;
     private final Clock clock;
 
+    @Transactional
     public RentedMoviesResponse rentMovies(RentMoviesCommand command) {
         User user = userPort.loadUserById(command.getUserId());
         Long basicRent = command.getMoviesForDays()

@@ -1,7 +1,7 @@
 package com.rental.moviex.application.service;
 
-import com.rental.moviex.application.port.in.RentMoviesUseCase.RentMoviesCommand;
-import com.rental.moviex.application.port.in.RentMoviesUseCase.RentedMoviesResponse;
+import com.rental.moviex.application.usecase.RentMoviesUseCase.RentMoviesCommand;
+import com.rental.moviex.application.usecase.RentMoviesUseCase.RentedMoviesResponse;
 import com.rental.moviex.domain.Movie;
 import com.rental.moviex.domain.MovieType;
 import com.rental.moviex.domain.Rental;
